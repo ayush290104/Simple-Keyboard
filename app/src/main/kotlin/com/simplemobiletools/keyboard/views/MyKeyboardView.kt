@@ -22,6 +22,7 @@ import android.view.animation.AccelerateInterpolator
 import android.view.inputmethod.EditorInfo
 import android.widget.PopupWindow
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.emoji2.text.EmojiCompat
@@ -30,6 +31,7 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isPiePlus
 import com.simplemobiletools.keyboard.R
+import com.simplemobiletools.keyboard.activities.MainActivity
 import com.simplemobiletools.keyboard.activities.ManageClipboardItemsActivity
 import com.simplemobiletools.keyboard.activities.SettingsActivity
 import com.simplemobiletools.keyboard.adapters.ClipsKeyboardAdapter
@@ -61,6 +63,7 @@ class MyKeyboardView @JvmOverloads constructor(context: Context, attrs: Attribut
          * @param primaryCode the unicode of the key being pressed. If the touch is not on a valid key, the value will be zero.
          */
         fun onPress(primaryCode: Int)
+
 
         /**
          * Send a key press to the listener.
@@ -326,7 +329,12 @@ class MyKeyboardView @JvmOverloads constructor(context: Context, attrs: Attribut
                 vibrateIfNeeded()
                 openClipboardManager()
             }
-
+            run.setOnClickListener{
+                Toast.makeText(context,"Work to be assigned",Toast.LENGTH_SHORT).show()
+            }
+            hello.setOnClickListener{
+                text_edittext.setText(text_edittext.text.toString()+"hello")
+            }
             clipboard_clear.setOnLongClickListener { context.toast(R.string.clear_clipboard_data); true; }
             clipboard_clear.setOnClickListener {
                 vibrateIfNeeded()
@@ -414,14 +422,11 @@ class MyKeyboardView @JvmOverloads constructor(context: Context, attrs: Attribut
             top_keyboard_divider.background = ColorDrawable(strokeColor)
 
             background = ColorDrawable(toolbarColor)
-            clipboard_value.apply {
-                background = rippleBg
-                setTextColor(mTextColor)
-                setLinkTextColor(mTextColor)
-            }
+
 
             settings_cog.applyColorFilter(mTextColor)
             pinned_clipboard_items.applyColorFilter(mTextColor)
+            hello.applyColorFilter(mPrimaryColor)
             clipboard_clear.applyColorFilter(mTextColor)
         }
 
@@ -742,14 +747,7 @@ class MyKeyboardView @JvmOverloads constructor(context: Context, attrs: Attribut
             val clipboardContent = context.getCurrentClip()
             if (clipboardContent?.isNotEmpty() == true) {
                 mToolbarHolder?.apply {
-                    clipboard_value.apply {
-                        text = clipboardContent
-                        removeUnderlines()
-                        setOnClickListener {
-                            mOnKeyboardActionListener!!.onText(clipboardContent.toString())
-                            vibrateIfNeeded()
-                        }
-                    }
+
 
                     toggleClipboardVisibility(true)
                 }

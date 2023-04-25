@@ -27,6 +27,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/hello"
+            android:layout_width="@dimen/toolbar_icon_height"
+            android:layout_height="@dimen/toolbar_icon_height"
+            android:layout_marginLeft="8dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/clear_clipboard_data"
+            android:padding="@dimen/small_margin"
+            android:src="@drawable/ic_emoji_emotions_outline_vector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/clipboard_value_holder"
+            app:layout_constraintHorizontal_bias="0.416"
+            app:layout_constraintStart_toEndOf="@+id/clipboard_clear"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <RelativeLayout
             android:id="@+id/clipboard_value_holder"
             android:layout_width="0dp"
@@ -38,22 +53,7 @@
             app:layout_constraintStart_toEndOf="@+id/clipboard_clear"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/clipboard_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:autoLink="none"
-                android:background="@drawable/clipboard_background"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:lines="1"
-                android:paddingStart="@dimen/activity_margin"
-                android:paddingTop="@dimen/small_margin"
-                android:paddingEnd="@dimen/activity_margin"
-                android:paddingBottom="@dimen/small_margin"
-                android:textSize="@dimen/label_text_size"
-                tools:text="Clipboard content" />
+
 
         </RelativeLayout>
 
@@ -69,6 +69,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/settings_cog"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/run"
+            android:layout_width="@dimen/toolbar_icon_height"
+            android:layout_height="@dimen/toolbar_icon_height"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/settings"
+            android:padding="@dimen/small_margin"
+            android:src="@drawable/ic_play_outline_vector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/pinned_clipboard_items"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/text_edittext"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.428" />
 
         <ImageView
             android:id="@+id/settings_cog"
@@ -91,6 +106,18 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/text_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="120dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/pinned_clipboard_items"
+            app:layout_constraintStart_toEndOf="@+id/clipboard_clear"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
